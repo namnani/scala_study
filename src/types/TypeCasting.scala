@@ -21,5 +21,11 @@ object TypeCasting {
     println(nani)
     println(yy)
 //    println(zz)
+
+    val nani2: Int = 7
+    val nani3: Long = nani2
+
+    println(nani2)
+    println(nani3)
   }
 }
