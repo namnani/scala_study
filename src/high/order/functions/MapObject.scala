@@ -14,6 +14,13 @@ object MapObject {
     salaries = Seq(1, 2, 3)
     newSalaries = salaries.map(_ * 2)
     println(newSalaries)
+
+    val domainName = "www.example.com"
+    def getURL = urlBuilder(ssl=true, domainName)
+    val endpoint = "users"
+    val query = "id=1"
+    val url = getURL(endpoint, query)
+    println(url)
   }
 
   private def promotion(salaries: List[Double], promotionFunction: Double => Double): List[Double] =
@@ -27,4 +34,9 @@ object MapObject {
 
   def hugePromotion(salaries: List[Double]): List[Double] =
     promotion(salaries, salary => salary * salary)
+
+  def urlBuilder(ssl: Boolean, domainName: String): (String, String) => String = {
+    val schema = if (ssl) "https://" else "http://"
+    (endpoint: String, query: String) => s"$schema$domainName/$endpoint?$query"
+  }
 }
